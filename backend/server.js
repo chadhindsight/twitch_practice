@@ -2,7 +2,7 @@ const express = require('express')
 require('dotenv').config()
 const request = require('request')
 
-// Initiate express
+// Initiate express!
 const app = express();
 app.use(express.json())
 

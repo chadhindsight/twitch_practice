@@ -6,7 +6,7 @@ const request = require('request')
 const app = express();
 app.use(express.json())
 
-// Get the Oath
+// Get the Oath stuff
 const getToken = (url, callback) => {
     const options = {
         url: process.env.GET_TOKEN,
@@ -26,9 +26,11 @@ const getToken = (url, callback) => {
         callback(res)
     })
 }
+let AT
 
 getToken(process.env.GET_TOKEN, (res) => {
-    console.log(res.body)
+    AT = res.body.access_token
+    return AT
 })
 
 app.listen(3000, console.log('server running on 3000!'))

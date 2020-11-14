@@ -26,11 +26,26 @@ const getToken = (url, callback) => {
         callback(res)
     })
 }
-let AT
 
+let AT
 getToken(process.env.GET_TOKEN, (res) => {
     AT = res.body.access_token
     return AT
 })
 
+const getGames = (url, accessToken, callback) => {
+    const gameOptions = {
+        url: process.env.GET_GAMES,
+        method: 'GET',
+        headers: {
+            'CLIENT-ID': process.env.CLIENT_ID,
+            'Authorization': 'Bearer ' + accessToken
+        }
+    }
+    request.get((gameOptions, err, res, body) => {
+        if (err) console.log(err)
+        console.log(`Status: ${res.statusCode}`)
+        console.log(JSON.parse(body))
+    })
+}
 app.listen(3000, console.log('server running on 3000!'))

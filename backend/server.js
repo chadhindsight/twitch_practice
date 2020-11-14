@@ -48,4 +48,11 @@ const getGames = (url, accessToken, callback) => {
         console.log(JSON.parse(body))
     })
 }
+
+let runGetGames = async () => {
+    const ting = await getGames(process.env.GET_GAMES, AT, (response) => {
+        console.log(ting)
+    })
+}
+runGetGames()
 app.listen(3000, console.log('server running on 3000!'))
